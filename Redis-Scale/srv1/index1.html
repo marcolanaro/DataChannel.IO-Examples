@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+		<div id="container">
+			<div id="buttons">
+				<button id="startButton" onclick="createConnection()">Join Room</button>
+				<button id="closeButton" onclick="closeDataChannels()">Leave Room</button>
+			</div>
+			<input type="text" id="dataChannelSend" placeholder="Write something">
+			<button id="sendButton" onclick="sendData()">Send</button>
+			<div id="dataChannelReceive"></div>
+		</div>
+        <script src="http://192.168.178.25:8081/socket.io/socket.io.js"></script>
+        <script src="<yourURL>/datachannel.io.js"></script>
+        <script>
+            var datachannel = new DataChannel({
+                socketServer: 'http://192.168.178.25:8081'
+            });
+			function sendData() {
+				var value = document.getElementById("dataChannelSend").value;
+				datachannel.in("room").emit("chat", {text: value} );
+			}
+
+			datachannel.in("room").on("chat", function(data) {
+				var el = document.getElementById("dataChannelReceive");
+				el.innerHTML = data.text + "<br>" + el.innerHTML;
+			});
+
+			function createConnection() {
+				datachannel.join("room");
+			}
+
+			function closeDataChannels() {
+				datachannel.leave("room");
+			}
+        </script>
+    </body>
+</html>
