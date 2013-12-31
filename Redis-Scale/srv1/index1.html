@@ -11,11 +11,10 @@
 			<button id="sendButton" onclick="sendData()">Send</button>
 			<div id="dataChannelReceive"></div>
 		</div>
-        <script src="http://192.168.178.25:8081/socket.io/socket.io.js"></script>
-        <script src="<yourURL>/datachannel.io.js"></script>
+        <script src="http://<yourHost>:8081/datachannel.io/datachannel.io.js"></script>
         <script>
             var datachannel = new DataChannel({
-                socketServer: 'http://192.168.178.25:8081'
+                socketServer: 'http://<yourHost>:8081'
             });
 			function sendData() {
 				var value = document.getElementById("dataChannelSend").value;

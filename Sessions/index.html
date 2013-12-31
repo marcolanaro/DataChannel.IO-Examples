@@ -11,8 +11,7 @@
 			<button id="sendButton" onclick="sendData()">Send</button>
 			<div id="dataChannelReceive"></div>
 		</div>
-        <script src="<yourHost>:8081/socket.io/socket.io.js"></script>
-        <script src="<yourHost>/<yourURL>/datachannel.io.js"></script>
+        <script src="http://<yourHost>:8081/datachannel.io/datachannel.io.js"></script>
         <script>
             var datachannel = new DataChannel({
                 socketServer: '<yourHost>:8081'
